@@ -1,0 +1,24 @@
+<!-- Dlowcharts rendering -->
+{{ if .Params.flowchart }}
+<script src="{{ .Site.BaseURL}}/js/raphael.min.js"></script>
+<script src="{{ .Site.BaseURL}}/js/flowchart-latest.js"></script>
+
+<script type="text/javascript">
+    var flowchartPrefix = "language-flowchart";
+    var index = 0;
+    Array.prototype.forEach.call(document.querySelectorAll("[class^=" + flowchartPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+
+        node0 = document.createElement('div');
+        node0.id = 'flowchart' + index;
+        x.parentNode.insertBefore(node0, x);
+
+        var diagram = flowchart.parse(jsonContent);
+        diagram.drawSVG("flowchart" + index, { 'line-width': 2 });
+
+        index += 1;
+    });
+</script>
+{{ end }}

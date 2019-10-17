@@ -2,10 +2,16 @@
 
 {{ .Content }}
 
-<footer class=" footline" >
+{{ partial "chart.html" . }}
+{{ partial "msc.html" . }}
+{{ partial "flowchart.html" . }}
+{{ partial "graphviz.html" . }}
+
+<footer class=" footline">
 	{{with .Params.LastModifierDisplayName}}
-	    <i class='fas fa-user'></i> <a href="mailto:{{ $.Params.LastModifierEmail }}">{{ . }}</a> {{with $.Date}} <i class='fas fa-calendar'></i> {{ .Format "02/01/2006" }}{{end}}
-	    </div>
+	<i class='fas fa-user'></i> <a href="mailto:{{ $.Params.LastModifierEmail }}">{{ . }}</a> {{with $.Date}} <i
+		class='fas fa-calendar'></i> {{ .Format "02/01/2006" }}{{end}}
+	</div>
 	{{end}}
 </footer>
 

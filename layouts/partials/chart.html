@@ -1,0 +1,43 @@
+<!-- chart.js rendering -->
+{{ if .Params.chart }}
+<script src="{{ .Site.BaseURL}}/js/Chart.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var chartPrefix = "language-chart";
+    // setting defaults
+    var borderColor = "#444";
+    var bgColor = "#eee";
+    var borderWidth = 2;
+
+    Chart.defaults.global.elements.rectangle.borderWidth = borderWidth;
+    Chart.defaults.global.elements.rectangle.borderColor = borderColor;
+    Chart.defaults.global.elements.rectangle.backgroundColor = bgColor;
+
+    Chart.defaults.global.elements.line.borderWidth = borderWidth;
+    Chart.defaults.global.elements.line.borderColor = borderColor;
+    Chart.defaults.global.elements.line.backgroundColor = bgColor;
+
+    Chart.defaults.global.elements.point.borderWidth = borderWidth;
+    Chart.defaults.global.elements.point.borderColor = borderColor;
+    Chart.defaults.global.elements.point.backgroundColor = bgColor;
+
+    var index = 0;
+    Array.prototype.forEach.call(document.querySelectorAll("[class^=" + chartPrefix + "]"), function (x) {
+        x.style.display = 'none'
+        x.parentNode.style.backgroundColor = "transparent"
+        jsonContent = x.innerText;
+
+        node0 = document.createElement('canvas');
+        node0.height = 200;
+        node0.style.height = 200;
+        node0.id = 'myChart' + index;
+        source = JSON.parse(jsonContent);
+        x.parentNode.insertBefore(node0, x);
+        var ctx = document.getElementById('myChart' + index).getContext('2d');
+
+
+        var myChart = new Chart(ctx, source);
+
+        index += 1;
+    });
+</script>
+{{ end }}
