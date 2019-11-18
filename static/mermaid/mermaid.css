@@ -4,10 +4,13 @@
 .mermaid .label {
   color: #333;
 }
+.node polygon {
+  stroke: #CCCCFF;
+  stroke-width: 1px;
+}
 .node rect,
 .node circle,
-.node ellipse,
-.node polygon {
+.node ellipse{
   fill: #ECECFF;
   stroke: #CCCCFF;
   stroke-width: 1px;
