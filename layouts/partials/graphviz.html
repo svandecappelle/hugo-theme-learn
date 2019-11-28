@@ -1,7 +1,7 @@
 <!-- graphviz rendering -->
 {{ if  .Params.viz}}
-<script type="text/javascript" src="{{ .Site.BaseURL}}/js/viz.js"> </script>
-<script type="text/javascript" src="{{ .Site.BaseURL}}/js/viz.render.js"> </script>
+<script type="text/javascript" src={{ "js/viz.js" | relURL }}> </script>
+<script type="text/javascript" src={{ "js/viz.render.js" | relURL }}> </script>
 <script type="text/javascript">
     (function () {
         var vizPrefix = "language-viz-";
