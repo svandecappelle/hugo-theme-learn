@@ -1,6 +1,6 @@
 <!-- chart.js rendering -->
 {{ if .Params.chart }}
-<script src="{{ .Site.BaseURL}}/js/Chart.js" type="text/javascript"></script>
+<script src="{{ "js/Chart.js" | relURL }}" type="text/javascript"></script>
 <script type="text/javascript">
     var chartPrefix = "language-chart";
     // setting defaults
@@ -25,12 +25,15 @@
         x.style.display = 'none'
         x.parentNode.style.backgroundColor = "transparent"
         jsonContent = x.innerText;
+        source = JSON.parse(jsonContent);
 
         node0 = document.createElement('canvas');
-        node0.height = 200;
-        node0.style.height = 200;
+        node0.height = source.height;
+        if (!node0.height) {
+          node0.height = 200
+        }
+        node0.style.height = 100;
         node0.id = 'myChart' + index;
-        source = JSON.parse(jsonContent);
         x.parentNode.insertBefore(node0, x);
         var ctx = document.getElementById('myChart' + index).getContext('2d');
 
